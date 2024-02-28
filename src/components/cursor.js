@@ -2,13 +2,13 @@
 
 import useMousePosition from "../hooks/useMousePosition";
 
-const isMobileDevice = () => {
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(window.navigator.userAgent);
-};
-
 export default function Cursor({ isNav }) {
   const position = useMousePosition();
   const { x, y } = position;
+
+  const isMobileDevice = () => {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  };
 
   /*
     We do not want the cursor on mobile devices
