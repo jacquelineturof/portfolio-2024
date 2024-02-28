@@ -18,7 +18,7 @@ const pathname = usePathname();
   return (
     <div className="w-96 h-12 bg-transparent rounded-full" role="navigation">
       <ul 
-        className="w-full h-full flex items-center justify-evenly text-black relative cursor-pointer"
+        className="w-full h-full hidden lg:flex items-center justify-evenly text-black relative cursor-pointer"
         onMouseEnter={() => setIsNav(true)}
         onMouseLeave={() => setIsNav(false)}
       >
