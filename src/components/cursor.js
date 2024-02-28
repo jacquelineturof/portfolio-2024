@@ -7,8 +7,13 @@ export default function Cursor({ isNav }) {
   const { x, y } = position;
 
   const isMobileDevice = () => {
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    if (typeof window !== "undefined") {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(window.navigator.userAgent);
+    }
+    // Return a default value or perform a different check for server-side logic
+    return false;
   };
+  
 
   /*
     We do not want the cursor on mobile devices
