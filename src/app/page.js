@@ -8,6 +8,10 @@ import Cursor from "../components/cursor";
 import Navbar from "../components/navbar";
 import StackButton from "@/components/stackButton";
 import SocialMediaMenu from "@/components/socailMediaMenu";
+import Avatar from "@/components/avatar";
+import Menu from "@/components/menu";
+
+import useWindowSize from "@/hooks/useWindowSize";
 
 const openSans = Open_Sans({ subsets: ["latin"] });
 const poiretOne = Poiret_One({
@@ -16,6 +20,7 @@ const poiretOne = Poiret_One({
 });
 
 export default function Home() {
+  const { width } = useWindowSize();
   const [color, setColor] = useState("black");
   const [isMouseOverNav, setIsMouseOverNav] = useState(false);
 
@@ -27,13 +32,10 @@ export default function Home() {
           <span>Jackie</span>
           <span className="ml-4"> Turof </span>
         </div>
+        {/** setIsMouseOverNav so we can update cursor styles */}
         <Navbar setIsNav={setIsMouseOverNav} />
-        <div className="avatar">
-          <div className="w-16 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-            <img src="/headshot.png" />
-          </div>
-        </div>
-
+        {/** show avatar on desktop, menu control on mobile */}
+        { width > 700 ? <Avatar /> : <Menu /> }
       </nav>
       <section className="flex-1 w-full flex flex-col mt-36">
         <div
@@ -41,10 +43,10 @@ export default function Home() {
           onMouseEnter={() => setColor("blue")}
           onMouseLeave={() => setColor("black")}
         >
-          <h1 className="text-black text-9xl font-bold">
+          <h1 className="text-black text-5xl md:text-7xl lg:text-9xl font-bold">
             Software
           </h1>
-          <h1 className="text-black text-9xl font-bold ml-12">
+          <h1 className="text-black text-5xl md:text-7xl lg:text-9xl font-bold ml-12">
             Developer
           </h1>
         </div>
