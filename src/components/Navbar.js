@@ -2,9 +2,10 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Poiret_One } from "next/font/google";
 import useWindowSize from "@/hooks/useWindowSize";
+import { useCursorContext } from "@/context/CursorContext";
 
-import Avatar from "./avatar";
-import Menu from "./menu";
+import Avatar from "./Avatar";
+import Menu from "./Menu";
 
 const NAV_LINKS = [
   "home", "about", "work", "blog"
@@ -15,9 +16,11 @@ const poiretOne = Poiret_One({
   weight: "400"
 });
 
-export default function Navbar({ setIsNav }) {
+export default function Navbar() {
   const { width } = useWindowSize();
   const pathname = usePathname();
+  const { setIsMouseOverNav } = useCursorContext();
+
 
   const getLinkStyles = (href) => {
     if (href === pathname) {
@@ -28,7 +31,7 @@ export default function Navbar({ setIsNav }) {
   };
 
   return (
-    <nav className="flex h-16 w-full items-center justify-between">
+    <nav className="flex h-16 px-8 py-12 w-full items-center justify-between bg-bg-gray">
       {/** brand */}
       <div className={`flex flex-col text-3xl text-black leading-none ${poiretOne.className}`}>
         <span>Jackie</span>
@@ -38,15 +41,15 @@ export default function Navbar({ setIsNav }) {
       <div className="w-96 h-12 bg-transparent rounded-full" role="navigation">
         <ul
           className="w-full h-full hidden lg:flex items-center justify-evenly text-black relative cursor-pointer"
-          onMouseEnter={() => setIsNav(true)}
-          onMouseLeave={() => setIsNav(false)}
+          onMouseEnter={() => setIsMouseOverNav(true)}
+          onMouseLeave={() => setIsMouseOverNav(false)}
         >
           {NAV_LINKS.map((nl) => (
             <li
               key={nl}
               className={getLinkStyles(nl)}
             >
-              <Link href={`/${nl}`}>{nl}</Link>
+              <Link href={`/${nl === "home" ? "" : nl}`}>{nl}</Link>
             </li>
           ))}
         </ul>
