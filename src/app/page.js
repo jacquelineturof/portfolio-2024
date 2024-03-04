@@ -4,22 +4,18 @@ import { useState } from "react";
 
 import { Open_Sans } from "next/font/google";
 
-import Cursor from "../components/cursor";
-import Navbar from "../components/navbar";
-import StackButton from "@/components/stackButton";
-import SocialMediaMenu from "@/components/socailMediaMenu";
+import Cursor from "../components/Cursor";
+import StackButton from "@/components/StackButton";
+import SocialMediaMenu from "@/components/SocailMediaMenu";
 
 const openSans = Open_Sans({ subsets: ["latin"] });
 
 export default function Home() {
   const [color, setColor] = useState("black");
-  const [isMouseOverNav, setIsMouseOverNav] = useState(false);
 
   return (
-    <main className={`h-screen w-screen p-8 ${openSans.className} flex flex-col bg-bg-gray`}>
-      <Cursor color={color} isNav={isMouseOverNav} />
-      {/** setIsMouseOverNav so we can update cursor styles */}
-      <Navbar setIsNav={setIsMouseOverNav} />
+    <main className={`h-full w-full p-8 ${openSans.className} flex flex-col bg-bg-gray`}>
+      <Cursor color={color} />
       <section className="flex-1 w-full flex flex-col mt-36">
         <div
           className="flex flex-col uppercase"
