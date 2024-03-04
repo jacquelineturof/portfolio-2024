@@ -1,8 +1,10 @@
 "use client";
 
 import useMousePosition from "../hooks/useMousePosition";
+import { useCursorContext } from "@/context/CursorContext";
 
-export default function Cursor({ isNav }) {
+export default function Cursor() {
+  const { isMouseOverNav } = useCursorContext();
   const position = useMousePosition();
   const { x, y } = position;
 
@@ -20,7 +22,7 @@ export default function Cursor({ isNav }) {
   */
   if (isMobileDevice()) return null;
 
-  if (isNav) {
+  if (isMouseOverNav) {
     return (
       <div
         style={{
